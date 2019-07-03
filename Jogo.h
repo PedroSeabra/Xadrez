@@ -20,14 +20,14 @@ class Jogo
         bool inicio;
         bool xeque;
         bool xeque_mate;
-	
+
 
     public:
         Jogo();
         void getPecasDosJogadores();
         void inicia();
         void getRodada(int rodada);
-        bool getMovimentoDoJogador();
+        bool getMovimentoDoJogador(int rodada);
 };
 
 #endif

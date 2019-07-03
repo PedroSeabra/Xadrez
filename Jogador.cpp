@@ -4,7 +4,7 @@ int Jogador::numeroDeJogador = 0;
 
 Jogador::Jogador()
 {
-    nome = getNomeJogador();
+    nome = getJogador();
 
     rei = new Rei(numeroDeJogador);
     rainha = new Rainha(numeroDeJogador);
@@ -22,7 +22,7 @@ Jogador::Jogador()
 
 }
 
-string Jogador::getNomeJogador()
+string Jogador::getJogador()
 {
     string nome;
 

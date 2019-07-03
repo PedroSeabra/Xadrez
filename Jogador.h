@@ -31,7 +31,7 @@ class Jogador
 
     public:
         Jogador();
-        string getNomeJogador();
+        string getJogador();
         string getNome();
         Rei* getRei();
         Rainha* getRainha();

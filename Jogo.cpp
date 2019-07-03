@@ -142,12 +142,11 @@ void Jogo::inicia() {
 
     for(i = 0; i < 10; i++) {
     	tabuleiro.desenha();
-		this->getMovimentoDoJogador();
-		printf("\ni = %d\n", i);
+		getRodada(i % 2);
 	}
 }
 
-bool Jogo::getMovimentoDoJogador()
+bool Jogo::getMovimentoDoJogador(int rodada)
 {
     char colunaO, colunaD;
     int linhaOrigem, linhaDestino, colunaOrigem, colunaDestino;
@@ -191,6 +190,12 @@ bool Jogo::getMovimentoDoJogador()
         case 'h':
             colunaOrigem = 7;
         break;
+    }
+
+    if(tabuleiro.getOcupante(linhaOrigem,colunaOrigem)->getCor() != rodada)
+    {
+        printf("Movimento Inválido! Passando a vez.\n");
+        return(false);
     }
 
     switch(colunaD)
@@ -250,5 +255,6 @@ void Jogo::getRodada(int rodada)
 
 		cout << "\nSua vez " << jogador[rodada].getNome() << "!" << endl;
 
-		getMovimentoDoJogador();
+        getMovimentoDoJogador(rodada);
+
 }
