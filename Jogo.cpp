@@ -15,33 +15,33 @@ Jogo::Jogo()
             if (i == 0) {
                 switch (j) {
                     case 0:
-                        tabuleiro.setOcupante(i, j, torres[0]);                    
+                        tabuleiro.setOcupante(i, j, torres[2]);
                         break;
                     case 1:
-                        tabuleiro.setOcupante(i, j, cavalos[0]);                        
+                        tabuleiro.setOcupante(i, j, cavalos[2]);
                         break;
                     case 2:
-                        tabuleiro.setOcupante(i, j, bispos[0]);                        
+                        tabuleiro.setOcupante(i, j, bispos[2]);
                         break;
                     case 3:
-                        tabuleiro.setOcupante(i, j, rainhas[0]);                        
+                        tabuleiro.setOcupante(i, j, reis[1]);
                         break;
                     case 4:
-                        tabuleiro.setOcupante(i, j, reis[0]);                        
+                        tabuleiro.setOcupante(i, j, rainhas[1]);
                         break;
                     case 5:
-                        tabuleiro.setOcupante(i, j, bispos[1]);                        
+                        tabuleiro.setOcupante(i, j, bispos[3]);
                         break;
                     case 6:
-                        tabuleiro.setOcupante(i, j, cavalos[1]);                        
+                        tabuleiro.setOcupante(i, j, cavalos[3]);
                         break;
                     case 7:
-                        tabuleiro.setOcupante(i, j, torres[1]);                        
-                        break;                    
+                        tabuleiro.setOcupante(i, j, torres[3]);
+                        break;
                 }
             }
             else {
-                tabuleiro.setOcupante(i, j, peoes[j]);
+                tabuleiro.setOcupante(i, j, peoes[j+8]);
             }
         }
     }
@@ -52,50 +52,51 @@ Jogo::Jogo()
         {
             if (i == 7) {
                 switch (j) {
-                    case 0:
-                        tabuleiro.setOcupante(i, j, torres[2]);                        
+                	case 0:
+                        tabuleiro.setOcupante(i, j, torres[0]);
                         break;
                     case 1:
-                        tabuleiro.setOcupante(i, j, cavalos[2]);                        
+                        tabuleiro.setOcupante(i, j, cavalos[0]);
                         break;
                     case 2:
-                        tabuleiro.setOcupante(i, j, bispos[2]);                        
+                        tabuleiro.setOcupante(i, j, bispos[0]);
                         break;
                     case 3:
-                        tabuleiro.setOcupante(i, j, reis[1]);                        
+                        tabuleiro.setOcupante(i, j, rainhas[0]);
                         break;
                     case 4:
-                        tabuleiro.setOcupante(i, j, rainhas[1]);                        
+                        tabuleiro.setOcupante(i, j, reis[0]);
                         break;
                     case 5:
-                        tabuleiro.setOcupante(i, j, bispos[3]);                        
+                        tabuleiro.setOcupante(i, j, bispos[1]);
                         break;
                     case 6:
-                        tabuleiro.setOcupante(i, j, cavalos[3]);                        
+                        tabuleiro.setOcupante(i, j, cavalos[1]);
                         break;
                     case 7:
-                        tabuleiro.setOcupante(i, j, torres[3]);                        
-                        break;                    
+                        tabuleiro.setOcupante(i, j, torres[1]);
+                        break;
                 }
             }
             else {
-                tabuleiro.setOcupante(i, j, peoes[j+8]);
+                tabuleiro.setOcupante(i, j, peoes[j]);
             }
         }
     }
-
-    //Pede jogada do primeiro Jogador
-    /*classe Turno
-    printf("Entre a sua Jogada: \n");
-    scanf("%c%d %c%d");
-
-    int linhaOrigem, linhaDestino;
-    int colunaOrigem, colunaDestino; */
 
     //Configura o estado do Jogo
     inicio = true;
     xeque = false;
     xeque_mate = false;
+
+    for(int rodada = 0; ;rodada++)
+    {
+        if(rodada % 2 == 0)
+            getRodada(0);
+        else
+            getRodada(1);
+    }
+
 }
 
 void Jogo::getPecasDosJogadores()
@@ -139,7 +140,7 @@ void Jogo::inicia() {
     int i = 0, j = 0;
     bool x;
 
-    for(i = 0; i < 5; i++) {
+    for(i = 0; i < 10; i++) {
     	tabuleiro.desenha();
 		this->getMovimentoDoJogador();
 		printf("\ni = %d\n", i);
@@ -233,11 +234,21 @@ bool Jogo::getMovimentoDoJogador()
     		if (capturada != NULL)
 	    		capturada->setForaDeJogo(false);
 		}
-    	tabuleiro.setOcupante(linhaDestino, colunaDestino, tabuleiro.getOcupante(linhaOrigem, colunaOrigem));    				
+    	tabuleiro.setOcupante(linhaDestino, colunaDestino, tabuleiro.getOcupante(linhaOrigem, colunaOrigem));
     	tabuleiro.setOcupante(linhaOrigem, colunaOrigem, NULL);
     	return true;
 	}
 	else {
 		return false;
 	}
+}
+
+void Jogo::getRodada(int rodada)
+{
+
+        tabuleiro.desenha();
+
+		cout << "\nSua vez " << jogador[rodada].getNome() << "!" << endl;
+
+		getMovimentoDoJogador();
 }

@@ -35,6 +35,11 @@ string Jogador::getNomeJogador()
     return nome;
 }
 
+string Jogador::getNome()
+{
+    return(nome);
+}
+
 Rei* Jogador::getRei()
 {
     return(rei);

@@ -32,6 +32,7 @@ class Jogador
     public:
         Jogador();
         string getNomeJogador();
+        string getNome();
         Rei* getRei();
         Rainha* getRainha();
         Bispo* getBispos(int i);

@@ -13,10 +13,10 @@ bool Rainha::checaMovimento(int linhaOrigem, int colunaOrigem, int linhaDestino,
         return false;
     }
 
-    std::string Rainha::desenha()
-    {
+string Rainha::desenha()
+{
         if(getCor() == 0) // Peça branca
             return("r");
         else
             return("R");
-    }
+}
